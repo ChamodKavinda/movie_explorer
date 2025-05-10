@@ -1,70 +1,167 @@
-# Getting Started with Create React App
+# Movie Explorer
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+A modern web application for exploring movies, built with React and Material-UI. This application allows users to search for movies, view trending movies, manage favorites, and get detailed information about movies.
 
-## Available Scripts
+## Features
 
-In the project directory, you can run:
+### 🎬 Movie Discovery
 
-### `npm start`
+- Search for movies with real-time results
+- View trending movies
+- Infinite scroll for loading more movies
+- Detailed movie information including:
+  - Movie posters
+  - Release dates
+  - Ratings
+  - Genres
+  - Trailers (when available)
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+### ⭐ Favorites Management
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+- Add/remove movies to favorites
+- View your favorite movies in a dedicated section
+- Persistent storage of favorites using localStorage
 
-### `npm test`
+### 🎨 User Interface
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+- Responsive design that works on all devices
+- Dark/Light theme support
+- Modern Material-UI components
+- Smooth animations and transitions
+- Loading states and error handling
 
-### `npm run build`
+### 🔐 Authentication
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+- User authentication system
+- Protected routes
+- Persistent login state
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+## Tech Stack
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+- **Frontend Framework**: React
+- **UI Library**: Material-UI (MUI)
+- **State Management**: React Context API
+- **Routing**: React Router
+- **API Integration**: Axios
+- **Styling**: MUI's styled components
+- **Icons**: Material Icons
 
-### `npm run eject`
+## Project Setup
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+1. Clone the repository:
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+```bash
+git clone <repository-url>
+cd movie-explorer
+```
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+2. Install dependencies:
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+```bash
+npm install
+```
 
-## Learn More
+3. Create a `.env` file in the root directory and add your TMDB API key:
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+```
+REACT_APP_API_KEY=your_tmdb_api_key_here
+```
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+4. Start the development server:
 
-### Code Splitting
+```bash
+npm start
+```
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+## API Integration
 
-### Analyzing the Bundle Size
+This project uses The Movie Database (TMDB) API. The following endpoints are used:
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
+- `/search/movie` - Search for movies
+- `/trending/movie/week` - Get trending movies
+- `/movie/{id}/videos` - Get movie trailers
 
-### Making a Progressive Web App
+### API Configuration
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
+The API is configured in `src/api/axios.js` with:
 
-### Advanced Configuration
+- Base URL: `https://api.themoviedb.org/3`
+- API key management through environment variables
+- Error handling and response interceptors
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
+## Project Structure
 
-### Deployment
+```
+src/
+├── api/              # API configuration and services
+├── components/       # Reusable UI components
+├── contexts/         # React Context providers
+├── pages/           # Page components
+└── App.js           # Main application component
+```
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
+### Key Components
 
-### `npm run build` fails to minify
+- **MovieCard**: Displays individual movie information
+- **SearchBar**: Handles movie search functionality
+- **MovieGrid**: Displays search results
+- **TrendingMovies**: Shows trending movies
+- **UserFavorites**: Manages favorite movies
+- **MovieDetailDialog**: Shows detailed movie information
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+### Context Providers
+
+- **MovieContext**: Manages movie data and search state
+- **FavoritesContext**: Handles favorites functionality
+- **ThemeContext**: Manages theme preferences
+- **AuthContext**: Handles authentication state
+
+## Features in Detail
+
+### Search Functionality
+
+- Real-time search as you type
+- Debounced API calls to prevent rate limiting
+- Clear search results option
+- Persistent search history
+
+### Trending Movies
+
+- Weekly trending movies
+- Infinite scroll pagination
+- Filtering options:
+  - By genre
+  - By year
+  - By rating
+
+### Favorites System
+
+- Add/remove movies to favorites
+- Persistent storage using localStorage
+- Quick access through user menu
+- Visual indicators for favorite status
+
+### Theme Support
+
+- Light and dark mode
+- Persistent theme preference
+- Smooth theme transitions
+- Responsive design for all screen sizes
+
+## Contributing
+
+1. Fork the repository
+2. Create your feature branch (`git checkout -b feature/AmazingFeature`)
+3. Commit your changes (`git commit -m 'Add some AmazingFeature'`)
+4. Push to the branch (`git push origin feature/AmazingFeature`)
+5. Open a Pull Request
+
+## License
+
+This project is licensed under the MIT License - see the LICENSE file for details.
+
+## Acknowledgments
+
+- [The Movie Database (TMDB)](https://www.themoviedb.org/) for providing the API
+- [Material-UI](https://mui.com/) for the component library
+- [React](https://reactjs.org/) for the frontend framework
